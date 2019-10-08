@@ -1,29 +1,32 @@
 {
-  "name": "server",
+  "name": "apolloserver-boilerplate",
   "version": "1.0.0",
-  "description": "",
+  "description": "Apollo Server Boilerplate ",
   "main": "index.js",
-  "babel": {
-    "presets": [
-      "@babel/preset-env"
-    ]
-  },
   "scripts": {
-    "start": "nodemon --exec babel-node ./src/index.js",
-    "build:clean": "rimraf ./build",
-    "build:build": "babel src --out-dir ./build --source-maps",
-    "build": "npm run build:clean && npm run build:build",
-    "production": "node ./build/index.js"
+    "start": "node index.js"
   },
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "apollo-server",
+    "apollo",
+    "graphql",
+    "boilerplate"
+  ],
+  "author": "Mohamad Kaakati",
+  "license": "MIT",
   "dependencies": {
-    "@babel/cli": "^7.6.2",
-    "@babel/core": "^7.6.2",
-    "@babel/node": "^7.6.2",
-    "@babel/preset-env": "^7.6.2",
-    "@babel/register": "^7.6.2",
-    "nodemon": "^1.19.3",
-    "rimraf": "^3.0.0"
+    "apollo-server": "^2.3.2",
+    "apollo-server-express": "^2.3.2",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "graphql": "^14.1.1",
+    "graphql-tools": "^4.0.4",
+    "http": "0.0.0",
+    "jsonwebtoken": "^8.4.0",
+    "localized-strings": "^0.2.1",
+    "merge-graphql-schemas": "^1.5.8",
+    "mongoose": "^5.4.6"
   }
 }
