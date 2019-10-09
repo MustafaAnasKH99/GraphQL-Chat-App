@@ -30,6 +30,10 @@ const resolvers = {
             // Query Method
             return await Methods.UserMethods.fetchCurrentUser(context);
         },
+
+        fetchAllUsers: async () => {
+            return await Methods.User.fetchAllUsers();
+        }
     },
     Mutation: {
         // User.

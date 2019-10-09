@@ -3,17 +3,17 @@ const { gql } = require('apollo-server-express');
 const schema = gql`
 type User {
   id: String!
-  mobile: String!
+  mobile: String
   password: String!
-  name: String!
-  email: String!
+  name: String
+  email: String
   token: String
-  role: Role!
+  role: Role
 }
 
 type UserQuery {
   id: String!
-  name: String!
+  name: String
   mobile: String!
   email: String!
   token: String
@@ -28,9 +28,9 @@ input LoginInput {
 input SignupInput {
   mobile: String!
   password: String!
-  name: String!
+  name: String
   email: String!
-  deviceId: String!
+  deviceId: String
 }
 
 input UpdateUserInput {
@@ -48,7 +48,8 @@ type Subscription {
 }
 
 type Query {
-  fetchCurrentUser : UserQuery!
+  fetchCurrentUser: UserQuery!
+  fetchAllUsers: [User]
 }
 
 `;

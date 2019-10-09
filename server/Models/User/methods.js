@@ -20,6 +20,7 @@ exports.createNewUser = async function(params) {
                     email: params.email,
                     mobile : params.mobile,
                     password: hashedPassword,
+                    createdAt: new Date().toISOString()
                 };
 
                 // Create new User
@@ -68,5 +69,14 @@ exports.fetchCurrentUser = async function(context) {
             reject(new ApolloError("Login Required"));
         }
         resolve(context.user);
+    })
+}
+
+exports.fetchAllUsers = async function(context){
+    return new Promise((resolve, reject) => {
+        console.log('promise works - fetching users');
+        User.find({}, (err, users) => {
+            resolve(users);
+       })
     })
 }
