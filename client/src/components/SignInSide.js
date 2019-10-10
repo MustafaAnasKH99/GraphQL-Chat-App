@@ -13,6 +13,9 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 
+import LOGIN_USER from '../Mutations/loginUser'
+import { useMutation } from '@apollo/react-hooks';
+
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -60,10 +63,15 @@ export default function SignInSide() {
 
   const [ password, setPassword ] = useState('')
   const [ mobile, setMobile ] = useState('')
+  const [ loginUser, { data, loading, error, called }] = useMutation(LOGIN_USER)
 
-  const SignIn = (e) => {
+  const SignIn = async (e) => {
     e.preventDefault()
     console.log(mobile, password)
+    console.log(called)
+    await loginUser({ variables: { mobile: mobile, password: password }})
+    console.log(error)
+    console.log(error)
   }
 
   const handleMobileChange = (e) => {
