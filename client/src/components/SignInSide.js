@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -58,6 +58,22 @@ const useStyles = makeStyles(theme => ({
 export default function SignInSide() {
   const classes = useStyles();
 
+  const [ password, setPassword ] = useState('')
+  const [ mobile, setMobile ] = useState('')
+
+  const SignIn = (e) => {
+    e.preventDefault()
+    console.log(mobile, password)
+  }
+
+  const handleMobileChange = (e) => {
+    setMobile(e.target.value)
+  }
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value)
+  }
+
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
@@ -70,17 +86,18 @@ export default function SignInSide() {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <form className={classes.form} noValidate>
+          <form className={classes.form} noValidate onSubmit={(e) => SignIn(e)}>
             <TextField
               variant="outlined"
               margin="normal"
               required
               fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
+              id="mobile"
+              label="Mobile No."
+              name="mobile"
+              autoComplete="mobile"
               autoFocus
+              onChange={(e) => handleMobileChange(e)}
             />
             <TextField
               variant="outlined"
@@ -92,6 +109,7 @@ export default function SignInSide() {
               type="password"
               id="password"
               autoComplete="current-password"
+              onChange={(e) => handlePasswordChange(e)}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
