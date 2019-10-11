@@ -95,7 +95,10 @@ export default function SignInSide() {
 
   if ( token ){
     return (
-      <h1>User logged in</h1>
+      <div>
+        <h1>User logged in</h1>
+        <button onClick={() => setToken("")}>Log Out</button>
+      </div>
     )
   } else {
     return (
