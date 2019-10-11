@@ -71,8 +71,8 @@ export default function SignInSide() {
     {
       onCompleted: data => {
         const { loginUser } = data
-        setToken(loginUser)
         localStorage.setItem('token', loginUser)
+        setToken(loginUser)
         console.log(loginUser)
       }
     }
@@ -97,7 +97,10 @@ export default function SignInSide() {
     return (
       <div>
         <h1>User logged in</h1>
-        <button onClick={() => setToken("")}>Log Out</button>
+        <button onClick={() => {
+          localStorage.removeItem('token')
+          setToken("")
+        }}>Log Out</button>
       </div>
     )
   } else {
