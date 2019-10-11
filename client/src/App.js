@@ -5,6 +5,15 @@ import SignInSide from './components/SignInSide.js';
 import { ApolloProvider } from '@apollo/react-hooks';
 import ApolloClient from 'apollo-boost'
 
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+
+import Home from './components/Home'
+
 
 const client = new ApolloClient({
   uri: 'http://localhost:4000/graphql'
@@ -15,7 +24,16 @@ function App() {
     <ApolloProvider client={client}>
       <div className="App">
         <header className="App-header">
-          <SignInSide />
+        <Router>
+        <Switch>
+          <Route path="/signin">
+            <SignInSide />
+          </Route>
+          <Route path="/">
+            <Home />
+          </Route>
+        </Switch>
+      </Router>
         </header>
       </div>
     </ApolloProvider>
