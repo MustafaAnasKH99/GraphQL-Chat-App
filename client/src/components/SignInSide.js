@@ -59,17 +59,20 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function SignInSide() {
+  const _token = localStorage.getItem('token')
   const classes = useStyles();
 
-  const [ password, setPassword ] = useState('')
+  const [ token, setToken ] = useState(_token)
   const [ mobile, setMobile ] = useState('')
-  const [ token, setToken ] = useState('')
+  const [ password, setPassword ] = useState('')
+
   const [ loginUser, { loading, error, called }] = useMutation(
     LOGIN_USER,
     {
       onCompleted: data => {
         const { loginUser } = data
         setToken(loginUser)
+        localStorage.setItem('token', loginUser)
         console.log(loginUser)
       }
     }
@@ -77,10 +80,8 @@ export default function SignInSide() {
 
   const SignIn = async (e) => {
     e.preventDefault()
-    console.log(mobile, password)
     await loginUser({ 
       variables: { mobile: mobile, password: password },
-      onCompleted: data => console.log(data)
     })
   }
 
@@ -92,8 +93,13 @@ export default function SignInSide() {
     setPassword(e.target.value)
   }
 
-  return (
-    <Grid container component="main" className={classes.root}>
+  if ( token ){
+    return (
+      <h1>User logged in</h1>
+    )
+  } else {
+    return (
+      <Grid container component="main" className={classes.root}>
       <CssBaseline />
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
@@ -161,5 +167,6 @@ export default function SignInSide() {
         </div>
       </Grid>
     </Grid>
-  );
+    )
+  }
 }
