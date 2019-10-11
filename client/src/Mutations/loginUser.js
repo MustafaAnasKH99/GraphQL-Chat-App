@@ -2,8 +2,8 @@ import gql from 'graphql-tag';
 
 
 const LOGIN_USER = gql`
-    mutation LoginUser($mobile: String!, $password: String!){
-        loginUser(parms: {
+    mutation loginUser($mobile: String!, $password: String!){
+        loginUser(params: {
             mobile: $mobile, 
             password: $password
         })

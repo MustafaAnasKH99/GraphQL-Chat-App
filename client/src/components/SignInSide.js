@@ -63,15 +63,25 @@ export default function SignInSide() {
 
   const [ password, setPassword ] = useState('')
   const [ mobile, setMobile ] = useState('')
-  const [ loginUser, { data, loading, error, called }] = useMutation(LOGIN_USER)
+  const [ token, setToken ] = useState('')
+  const [ loginUser, { loading, error, called }] = useMutation(
+    LOGIN_USER,
+    {
+      onCompleted: data => {
+        const { loginUser } = data
+        setToken(loginUser)
+        console.log(loginUser)
+      }
+    }
+    )
 
   const SignIn = async (e) => {
     e.preventDefault()
     console.log(mobile, password)
-    console.log(called)
-    await loginUser({ variables: { mobile: mobile, password: password }})
-    console.log(error)
-    console.log(error)
+    await loginUser({ 
+      variables: { mobile: mobile, password: password },
+      onCompleted: data => console.log(data)
+    })
   }
 
   const handleMobileChange = (e) => {
