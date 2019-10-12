@@ -9,6 +9,8 @@ type User {
   email: String
   token: String
   role: Role
+  createdAt: String,
+  disabled: Boolean
 }
 
 type UserQuery {
@@ -18,6 +20,8 @@ type UserQuery {
   email: String!
   token: String
   role: Role!
+  createdAt: String,
+  disabled: Boolean
 }
 
 input LoginInput {

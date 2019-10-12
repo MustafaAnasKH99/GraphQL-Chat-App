@@ -13,14 +13,12 @@ exports.createNewUser = async function(params) {
                 reject(new ApolloError("User Already Exists"));
             } else {
                 var hashedPassword = bcrypt.hashSync(params.password, salt);
-                // console.log(hashedPassword);
                 const user = {
-                    // id: uuid(),
                     name: params.name,
                     email: params.email,
                     mobile : params.mobile,
                     password: hashedPassword,
-                    createdAt: new Date().toISOString()
+                    createdAt: new Date().toISOString(),
                 };
 
                 // Create new User
