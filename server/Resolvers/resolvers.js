@@ -34,6 +34,17 @@ const resolvers = {
             return await Methods.User.fetchAllUsers();
         },
 
+        // chats
+        fetchAllChats: async (context) => {
+            return await Methods.Chat.fetchAllChats(context)
+        },
+        fetchChats: async (_, params, context) => {
+            return await Methods.Chat.fetchChats(params, context)
+        },
+        fetchChatsByTwoUsers: async (_, params, context) => {
+            return await Methods.Chat.fetchChatsByTwoUsers(params, context)
+        },
+
         // Messages
         fetchMessages: async (context) => {
             return await Methods.Message.fetchMessages(context)
@@ -53,6 +64,14 @@ const resolvers = {
         },
         createUser: async (_, {params}, context) => {
             return await Methods.User.createNewUser(params);
+        },
+
+        // Chats
+        createChat: async (_, {params}, context) => {
+            return await Methods.Chat.createChat(params)
+        },
+        deleteChat: async (_, {id}, context) => {
+            return await Methods.Chat.deleteChat(id)
         },
 
         // Messages
