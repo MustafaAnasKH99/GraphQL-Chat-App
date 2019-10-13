@@ -30,10 +30,20 @@ const resolvers = {
             // Query Method
             return await Methods.UserMethods.fetchCurrentUser(context);
         },
-
         fetchAllUsers: async () => {
             return await Methods.User.fetchAllUsers();
-        }
+        },
+
+        // Messages
+        fetchMessages: async (context) => {
+            return await Methods.Message.fetchMessages(context)
+        },
+        fetchMessagesByOwner: async (params, context) => {
+            return await Methods.Message.fetchMessagesByOwner(params, context)
+        },
+        fetchMessagesByChatId: async (_, params, context) => {
+            return await Methods.Message.fetchMessagesByChatId(params, context)
+        },
     },
     Mutation: {
         // User.
@@ -43,6 +53,14 @@ const resolvers = {
         },
         createUser: async (_, {params}, context) => {
             return await Methods.User.createNewUser(params);
+        },
+
+        // Messages
+        createMessage: async (_, {params}, context) => {
+            return await Methods.Message.createMessage(_, params, context)
+        },
+        deleteMessage: async (_, {id}, context) => {
+            return await Methods.Message.deleteMessage(id)
         },
     },
 };

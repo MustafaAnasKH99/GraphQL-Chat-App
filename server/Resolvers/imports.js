@@ -10,3 +10,5 @@
 
 // User
 exports.User = require('../Models/User/methods');
+
+exports.Message = require('../Models/Message/methods');
