@@ -4,7 +4,7 @@ const Helpers = require('../helpers');
 
 // Create Chat
 exports.createChat = async (params,context) => {
-        // await Helpers.checkSuperAdmin(context);
+    // await Helpers.checkSuperAdmin(context);
     return new Promise((resolve, reject) => {
         const { users } = params
         const chat = {
@@ -24,9 +24,7 @@ exports.createChat = async (params,context) => {
 // Fetch Chat By User only
 exports.fetchChats = async (_, context) => {
     return new Promise((resolve, reject) => {
-        console.log('IT REACHED METHODS')
-        console.log('IT REACHED METHODS')
-        console.log('IT REACHED METHODS')
+        console.log('Fetching chats work')
         Chat.find({users: {$in: context.user.id}}, (err, chat) => {
             if (chat == null){
                 resolve('{}')
@@ -34,7 +32,6 @@ exports.fetchChats = async (_, context) => {
             }
             resolve(chat)
         }).populate('users')
-        console.log('HERE TOO')
     })
 }
 
@@ -49,9 +46,6 @@ exports.fetchAllChats = async (_, context) => {
 
 exports.fetchChatsByTwoUsers = async (context, params) => {
     return new Promise((resolve, reject) => {
-        console.log('IT REACHED METHODS')
-        console.log('IT REACHED METHODS')
-        console.log('IT REACHED METHODS')
         Chat.find({
             $and: [
                 {users: {$in: context.user.id}},
@@ -64,7 +58,6 @@ exports.fetchChatsByTwoUsers = async (context, params) => {
             }
             resolve(chat)
         }).populate('users')
-        console.log('HERE TOO')
     })
 }
 

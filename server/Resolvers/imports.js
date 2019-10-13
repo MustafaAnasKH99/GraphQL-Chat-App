@@ -12,7 +12,7 @@
 exports.User = require('../Models/User/methods');
 
 // Chat
-exports.Message = require('../Models/Chat/methods');
+exports.Chat = require('../Models/Chat/methods');
 
 // Message
 exports.Message = require('../Models/Message/methods');
