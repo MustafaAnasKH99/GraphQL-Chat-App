@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs');
 const salt = bcrypt.genSaltSync(10);
 const jwt = require('jsonwebtoken');
 const User = require('./model');
+const Chat = require('../Chat/model');
 
 // Create New User
 exports.createNewUser = async function(params) {
@@ -20,11 +21,18 @@ exports.createNewUser = async function(params) {
                     password: hashedPassword,
                     createdAt: new Date().toISOString(),
                 };
-
+                
                 // Create new User
                 const newUser = new User(user);
- 
+
+                // Add new user to the public chat (push id to chats array)
+                Chat.findOne({_id: "5da53f50a4d559229fcb6060"}, (err, chat) => {
+                    chat.users.push(newUser._id)
+                    chat.save()
+                })
+                
                 newUser.save()
+
                 // Resolve New User
                 resolve(newUser);    
             }
