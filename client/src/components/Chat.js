@@ -3,6 +3,8 @@ import { useMutation, useQuery } from '@apollo/react-hooks';
 import { useHistory } from 'react-router-dom'
 import { CircularProgress } from '@material-ui/core'
 
+import Message from './Message'
+
 import chats from '../Queries/Chats'
 
 const Chat = () => {
@@ -19,9 +21,9 @@ const Chat = () => {
                 {
                     data.fetchAllChats[0].users.map(e => {
                         console.log(e.name)
-                        return <h1>{e.name}</h1>
                     })
                 }
+                <Message chatId={data.fetchAllChats[0].id} />
             </div>
         )
     }

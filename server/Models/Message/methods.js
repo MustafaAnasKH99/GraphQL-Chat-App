@@ -6,10 +6,11 @@ const Helpers = require('../helpers');
 exports.createMessage = async (_, params, context) => {
         // await Helpers.checkSuperAdmin(context);
     return new Promise((resolve, reject) => {
-        const { content, chatId } = params
+        const { content, chatId, ownerId } = params
         const message = {
             chatId: chatId,
-            ownerId: context.user.id,
+            // ownerId: context.user.id,
+            ownerId: ownerId,
             content: content
         };
 
