@@ -43,6 +43,8 @@ exports.createNewUser = async function(params) {
 // Login User & Return JWT Token
 exports.loginUser = async function(params) {
     console.log('loginUser works');
+    console.log(params.mobile)
+    console.log(params.password)
     return new Promise((resolve, reject) => {
         const user = User.findOne({
             mobile: params.mobile

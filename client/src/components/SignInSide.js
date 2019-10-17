@@ -105,9 +105,11 @@ export default function SignInSide() {
 
   const SignIn = async (e) => {
     e.preventDefault()
+    console.log(mobile, password)
     await loginUser({ 
       variables: { mobile: mobile, password: password },
     })
+    console.log('function finished')
   }
 
   const SignUp = async (e) => {
