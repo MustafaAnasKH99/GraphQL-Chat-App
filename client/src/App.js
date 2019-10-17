@@ -13,6 +13,7 @@ import {
 } from "react-router-dom";
 
 import Home from './components/Home'
+import Chat from './components/Chat'
 
 
 const client = new ApolloClient({
@@ -31,6 +32,9 @@ function App() {
           </Route>
           <Route path="/">
             <Home />
+          </Route>
+          <Route path="/messages">
+            <Chat />
           </Route>
         </Switch>
       </Router>
