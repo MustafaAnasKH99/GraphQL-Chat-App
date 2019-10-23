@@ -136,6 +136,7 @@ export default function SignInSide() {
   }
 
   if ( token ){
+    history.push('/messages')
     return (
       <div>
         <h1>User logged in</h1>
