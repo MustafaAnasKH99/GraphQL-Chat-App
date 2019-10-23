@@ -27,7 +27,7 @@ const CreateMessage = ({refetch, chatId}) => {
     {
         onCompleted: data => {
         const { createMessage } = data
-        console.log(createMessage)
+            console.log(createMessage)
         }
     }
     )
@@ -38,7 +38,7 @@ const CreateMessage = ({refetch, chatId}) => {
 
     const handleSubmit = async (e) => {
         await createMessage({ 
-            variables: { chatId: chatId, content: message, ownerId: "5da53fb3c3206f231bb3a9b2" },
+            variables: { chatId: chatId, content: message },
         })
         refetch()
         setMessage('')
