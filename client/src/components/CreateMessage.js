@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
   }));
   
 
-const CreateMessage = (props) => {
+const CreateMessage = ({refetch, chatId}) => {
     const classes = useStyles();
     const [ message, setMessage ] = useState('')
 
@@ -38,9 +38,10 @@ const CreateMessage = (props) => {
 
     const handleSubmit = async (e) => {
         await createMessage({ 
-            variables: { chatId: "5da53f50a4d559229fcb6060", content: message, ownerId: "5da53fb3c3206f231bb3a9b2" },
+            variables: { chatId: chatId, content: message, ownerId: "5da53fb3c3206f231bb3a9b2" },
         })
-        props.refetch()
+        refetch()
+        setMessage('')
     }
 
     return ( 

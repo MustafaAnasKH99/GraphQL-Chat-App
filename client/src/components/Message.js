@@ -50,7 +50,7 @@ const Message = ({ chatId }) => {
                     })
                 }
             </List>
-            <CreateMessage refetch={refetch} />
+            <CreateMessage chatId={chatId} refetch={refetch} />
         </div>
      );
 }
