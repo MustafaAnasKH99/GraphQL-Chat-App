@@ -2,9 +2,12 @@ import React, { useState } from 'react'
 import { useQuery } from '@apollo/react-hooks';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom'
+import { CircularProgress } from '@material-ui/core'
 import { List, ListItem, ListItemText } from '@material-ui/core'
 import Avatar from '@material-ui/core/Avatar';
 import ImageIcon from '@material-ui/icons/Image';
+
+import CreateMessage from './CreateMessage'
 
 import MESSAGES from '../Queries/Messages'
 
@@ -18,14 +21,14 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Message = ({ chatId }) => {
-    const { loading, error, data } = useQuery(MESSAGES,{
+    const { loading, error, data, refetch } = useQuery(MESSAGES,{
         variables: { chatId },
     });
     
     let history = useHistory()
     const classes = useStyles();
 
-    if (loading) return 'Loading...';
+    if (loading) return <CircularProgress />;
     if (error) return `Error! ${error.message}`;
 
 
@@ -47,6 +50,7 @@ const Message = ({ chatId }) => {
                     })
                 }
             </List>
+            <CreateMessage refetch={refetch} />
         </div>
      );
 }
