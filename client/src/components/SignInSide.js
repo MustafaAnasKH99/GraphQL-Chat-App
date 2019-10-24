@@ -17,7 +17,7 @@ import LOGIN_USER from '../Mutations/loginUser'
 import CREATE_USER from '../Mutations/createUser'
 import { useMutation } from '@apollo/react-hooks';
 
-import { useHistory } from 'react-router-dom'
+import Home from './Home'
 
 
 function Copyright() {
@@ -65,7 +65,6 @@ const useStyles = makeStyles(theme => ({
 export default function SignInSide() {
   const _token = localStorage.getItem('token')
   const classes = useStyles();
-  const history = useHistory()
 
   // Login hooks
   const [ token, setToken ] = useState(_token)
@@ -136,15 +135,9 @@ export default function SignInSide() {
   }
 
   if ( token ){
-    history.push('/messages')
     return (
       <div>
-        <h1>User logged in</h1>
-        <button onClick={() => {
-          localStorage.removeItem('token')
-          setToken("")
-          history.push('/')
-        }}>Log Out</button>
+        <Home />
       </div>
     )
   } else {

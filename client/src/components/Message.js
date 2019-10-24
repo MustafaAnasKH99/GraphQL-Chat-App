@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { useQuery } from '@apollo/react-hooks';
 import { makeStyles } from '@material-ui/core/styles';
-import { useHistory } from 'react-router-dom'
 import { CircularProgress } from '@material-ui/core'
 import { List, ListItem, ListItemText, Paper } from '@material-ui/core'
 import Avatar from '@material-ui/core/Avatar';
@@ -21,7 +20,15 @@ const useStyles = makeStyles(theme => ({
 
     paper: {
         maxHeight: 400,
+        height: '100%',
+        width: '100%',
         overflow: 'auto'
+    },
+
+    hideScrollBar: {
+        overflow: 'hidden',
+        height: '100%',
+        width: '100%'
     }
 }));
 
@@ -30,7 +37,6 @@ const Message = ({ chatId }) => {
         variables: { chatId },
     });
     
-    let history = useHistory()
     const classes = useStyles();
 
     if (loading) return <CircularProgress />;
@@ -39,8 +45,8 @@ const Message = ({ chatId }) => {
 
     return ( 
         <div>
-            <Paper className={classes.paper}>
-                <List className={classes.root}>
+            <Paper className={classes.hideScrollBar}>
+                <List className={classes.root} className={classes.paper}>
                     {
                         data.fetchMessagesByChatId.map((e) => {
                             console.log(e.content)
@@ -52,7 +58,7 @@ const Message = ({ chatId }) => {
                         })
                     }
                 </List>
-            <CreateMessage chatId={chatId} refetch={refetch} className={classes.root} />
+                <CreateMessage chatId={chatId} refetch={refetch} className={classes.root} />
             </Paper>
         </div>
      );

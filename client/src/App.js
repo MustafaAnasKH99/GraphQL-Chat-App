@@ -33,7 +33,8 @@ function App() {
     <ApolloProvider client={client}>
       <div className="App">
         <header className="App-header">
-        <Router>
+        <SignInSide />
+        {/* <Router>
         <Switch>
           <Route path="/signin">
             <SignInSide />
@@ -45,7 +46,7 @@ function App() {
             <Chat />
           </Route>
         </Switch>
-      </Router>
+      </Router> */}
         </header>
       </div>
     </ApolloProvider>
