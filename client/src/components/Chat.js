@@ -18,11 +18,6 @@ const Chat = () => {
     } else {
         return (
             <div>
-                {
-                    data.fetchAllChats[0].users.map(e => {
-                        console.log(e.name)
-                    })
-                }
                 <Message chatId={data.fetchAllChats[0].id} />
             </div>
         )

@@ -3,7 +3,7 @@ import { useQuery } from '@apollo/react-hooks';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom'
 import { CircularProgress } from '@material-ui/core'
-import { List, ListItem, ListItemText } from '@material-ui/core'
+import { List, ListItem, ListItemText, Paper } from '@material-ui/core'
 import Avatar from '@material-ui/core/Avatar';
 import ImageIcon from '@material-ui/icons/Image';
 
@@ -18,6 +18,11 @@ const useStyles = makeStyles(theme => ({
       backgroundColor: theme.palette.background.paper,
       color: 'black',
     },
+
+    paper: {
+        maxHeight: 400,
+        overflow: 'auto'
+    }
 }));
 
 const Message = ({ chatId }) => {
@@ -34,23 +39,21 @@ const Message = ({ chatId }) => {
 
     return ( 
         <div>
-            <h1>Welcome to Messages!</h1>
-            <List className={classes.root}>
-                {
-                    data.fetchMessagesByChatId.map((e) => {
-                        console.log(e.content)
-                        return (
-                            <ListItem>
-                                <Avatar>
-                                    <ImageIcon />
-                                </Avatar>
-                                <ListItemText primary={e.content} secondary={e.ownerId.name} />
-                            </ListItem>
-                        ) 
-                    })
-                }
-            </List>
-            <CreateMessage chatId={chatId} refetch={refetch} />
+            <Paper className={classes.paper}>
+                <List className={classes.root}>
+                    {
+                        data.fetchMessagesByChatId.map((e) => {
+                            console.log(e.content)
+                            return (
+                                <ListItem>
+                                    <ListItemText primary={e.content} secondary={e.ownerId.name} />
+                                </ListItem>
+                            ) 
+                        })
+                    }
+                </List>
+            <CreateMessage chatId={chatId} refetch={refetch} className={classes.root} />
+            </Paper>
         </div>
      );
 }

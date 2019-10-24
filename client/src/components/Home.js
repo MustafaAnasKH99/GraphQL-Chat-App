@@ -9,11 +9,6 @@ const Home = () => {
         <div>
             <h1>Welcome Home!</h1>
             <Chat />
-            <h1>Go to messages</h1>
-            <button onClick={() => {
-                history.push('/messages')
-            }}>Join Us!
-            </button>
         </div>
      );
 }

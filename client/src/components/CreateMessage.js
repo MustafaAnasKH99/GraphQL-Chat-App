@@ -15,6 +15,9 @@ const useStyles = makeStyles(theme => ({
     input: {
       display: 'none',
     },
+    div: {
+        margin: theme.spacing(1)
+    }
   }));
   
 
@@ -45,7 +48,7 @@ const CreateMessage = ({refetch, chatId}) => {
     }
 
     return ( 
-        <div>
+        <div className={classes.div}>
             <Input onChange={(e) => handleChange(e)} className="Mui-focused MuiInput-fullWidth" placeholder="Say something" color="white"/>
             <Button onClick={(e) => handleSubmit(e)} className={classes.button} color="primary" variant="contained">
                 Send!
