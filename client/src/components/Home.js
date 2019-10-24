@@ -9,7 +9,7 @@ const Home = () => {
     return ( 
         <div>
             <h1>Share your thoughts!</h1>
-            <button onClick={() => {
+            <button style={{padding:  '5px', margin: '5px'}} onClick={() => {
                 localStorage.removeItem('token')
                 setToken("")
             }}>Log Out</button>
