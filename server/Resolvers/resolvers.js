@@ -15,12 +15,16 @@ const pubsub = new PubSub();
 Database.connectToDB()
 
 const DEMO_LOGGEDIN = 'DEMO_LOGGEDIN';
+const NEW_MESSAGE = 'GOT_A_NEW_MESSAGE';
 
 const resolvers = {
     Subscription: {
         demoSubscription: {
-            subscribe: () => pubsub.asyncIterator([DEMO_LOGGEDIN]),
+            subscribe: () => pubsub.asyncIterator([DEMO_LOGGEDIN]) 
         },
+        newMessage: {
+            subscribe: () => pubsub.asyncIterator([NEW_MESSAGE])
+        }
     },
     Query: {
         // User.
@@ -76,6 +80,8 @@ const resolvers = {
 
         // Messages
         createMessage: async (_, {params}, context) => {
+            console.log('it is being created')
+            pubsub.publish(NEW_MESSAGE, { newMessage: params });
             return await Methods.Message.createMessage(_, params, context)
         },
         deleteMessage: async (_, {id}, context) => {

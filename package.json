@@ -22,7 +22,9 @@
   },
   "homepage": "https://github.com/MustafaAnasKH99/GraphQL-Chat-App#readme",
   "dependencies": {
+    "apollo-link-ws": "^1.0.19",
     "concurrently": "^4.1.2",
-    "react-navigation": "^4.0.10"
+    "react-navigation": "^4.0.10",
+    "subscriptions-transport-ws": "^0.9.16"
   }
 }

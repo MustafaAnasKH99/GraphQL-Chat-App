@@ -13,6 +13,7 @@ const schema = gql`
         ownerId: String
         content: String
    }
+
    type Mutation {
         createMessage(params: MessageInput): Message
         deleteMessage(id: String!): Message
@@ -21,6 +22,10 @@ const schema = gql`
         fetchMessages: [Message]
         fetchMessagesByOwner(ownerId: String!): [Message]
         fetchMessagesByChatId(chatId: String!): [Message]
+   }
+
+   type Subscription {
+     newMessage: Message
    }
 `;
 

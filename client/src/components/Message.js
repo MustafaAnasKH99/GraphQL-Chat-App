@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery, useSubscription } from '@apollo/react-hooks';
 import { makeStyles } from '@material-ui/core/styles';
 import { CircularProgress } from '@material-ui/core'
 import { List, ListItem, ListItemText, Paper } from '@material-ui/core'
@@ -9,7 +9,10 @@ import ImageIcon from '@material-ui/icons/Image';
 import CreateMessage from './CreateMessage'
 
 import MESSAGES from '../Queries/Messages'
+import NEW_MESSAGE from '../Subscriptions/NewMessage'
 import { toast } from 'react-toastify';
+
+import NewMessage from './NewMessage'
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -34,7 +37,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Message = ({ chatId }) => {
-    const { loading, error, data, refetch, success } = useQuery(MESSAGES,{
+    const { loading, error, data, refetch } = useQuery(MESSAGES,{
         variables: { chatId },
         onCompleted: () => toast('Messages loaded')
     });
@@ -43,7 +46,6 @@ const Message = ({ chatId }) => {
 
     if (loading) return <CircularProgress />;
     if (error) return `Error! ${error.message}`;
-    if (success) alert('YAY')
 
 
     return ( 
@@ -63,6 +65,7 @@ const Message = ({ chatId }) => {
                 </List>
                 <CreateMessage chatId={chatId} refetch={refetch} className={classes.root} />
             </Paper>
+            <NewMessage />
         </div>
      );
 }
