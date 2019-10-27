@@ -5,6 +5,10 @@ import SignInSide from './components/SignInSide.js';
 import { ApolloProvider } from '@apollo/react-hooks';
 import ApolloClient from 'apollo-boost'
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -34,6 +38,7 @@ function App() {
       <div className="App">
         <header className="App-header">
         <SignInSide />
+        <ToastContainer />
         {/* <Router>
         <Switch>
           <Route path="/signin">

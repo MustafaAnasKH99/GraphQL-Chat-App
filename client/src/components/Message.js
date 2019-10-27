@@ -9,6 +9,7 @@ import ImageIcon from '@material-ui/icons/Image';
 import CreateMessage from './CreateMessage'
 
 import MESSAGES from '../Queries/Messages'
+import { toast } from 'react-toastify';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -33,14 +34,16 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Message = ({ chatId }) => {
-    const { loading, error, data, refetch } = useQuery(MESSAGES,{
+    const { loading, error, data, refetch, success } = useQuery(MESSAGES,{
         variables: { chatId },
+        onCompleted: () => toast('Messages loaded')
     });
     
     const classes = useStyles();
 
     if (loading) return <CircularProgress />;
     if (error) return `Error! ${error.message}`;
+    if (success) alert('YAY')
 
 
     return ( 
