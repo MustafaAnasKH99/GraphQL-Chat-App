@@ -54,7 +54,6 @@ const Message = ({ chatId }) => {
                 <List className={classes.root} className={classes.paper}>
                     {
                         data.fetchMessagesByChatId.map((e) => {
-                            console.log(e.content)
                             return (
                                 <ListItem>
                                     <ListItemText primary={e.content} secondary={e.ownerId.name} />

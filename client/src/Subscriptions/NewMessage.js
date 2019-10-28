@@ -12,4 +12,4 @@ subscription newMessage {
     }
 `
 
-export default NEW_MESSAGE
+export default NEW_MESSAGE  

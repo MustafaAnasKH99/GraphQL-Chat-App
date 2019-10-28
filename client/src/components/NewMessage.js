@@ -19,12 +19,12 @@ const NewMessage = () => {
 
     if (error) toast('ERROR')
     if (loading) toast('loading')
-    if (!loading) console.log(data)
+    if (!loading) console.log(data) 
     if (data) console.log(data)
 
     return ( 
         <div>
-            <h4>New comment: {!loading && data.newMessage}</h4>;
+            <h4>New comment</h4>;
         </div>
      );
 }

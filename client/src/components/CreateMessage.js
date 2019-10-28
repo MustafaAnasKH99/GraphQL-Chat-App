@@ -40,6 +40,7 @@ const CreateMessage = ({refetch, chatId}) => {
     }
 
     const handleSubmit = async (e) => {
+        console.log('message being sent')
         await createMessage({ 
             variables: { chatId: chatId, content: message },
         })

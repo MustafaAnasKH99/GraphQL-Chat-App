@@ -12,6 +12,7 @@ const cors = require('cors');
 const app = express();
 const http = require('http');
 
+
 // Importing 'body-parser' package.
 const bodyParser = require('body-parser')
 
@@ -47,11 +48,27 @@ const apollo = new ApolloServer({
     // delete error.locations;
     // return error.message;
   },
-  context: async ({ req, connection  }) => {
+  context: async ({ req, connection, payload  }) => {
     if (connection) {
       // check connection for metadata
+      console.log('check connection for metadata')
       return connection.context;
+    } else if (payload) {
+      console.log(payload)
+      Console.log('isnt there one??')
+      // get the user token from the headers
+      const token = payload.token || '';
+      const language = payload.language || 'ar';
+      // try to retrieve a user with the token
+      const user = token ? await _getUser(token.replace("Bearer ","")) : null;
+      // optionally block the user
+      // we could also check user roles/permissions here
+
+      // add the user to the context
+      return { user, language };
     } else {
+      console.log('a request just came')
+      console.log(req.headers)
       // get the user token from the headers
       const token = req.headers.authorization || '';
       const language = req.headers.language || 'ar';
@@ -59,11 +76,11 @@ const apollo = new ApolloServer({
       const user = token ? await _getUser(token.replace("Bearer ","")) : null;
       // optionally block the user
       // we could also check user roles/permissions here
-      
+
       // add the user to the context
       return { user, language };
-    }
-  },
+  }
+}
 });
 
 // Find user with Token
