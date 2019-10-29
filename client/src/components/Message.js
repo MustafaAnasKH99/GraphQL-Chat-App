@@ -1,18 +1,13 @@
-import React, { useState } from 'react'
-import { useQuery, useSubscription } from '@apollo/react-hooks';
+import React from 'react'
+import { useQuery } from '@apollo/react-hooks';
 import { makeStyles } from '@material-ui/core/styles';
 import { CircularProgress } from '@material-ui/core'
 import { List, ListItem, ListItemText, Paper } from '@material-ui/core'
-import Avatar from '@material-ui/core/Avatar';
-import ImageIcon from '@material-ui/icons/Image';
 
 import CreateMessage from './CreateMessage'
-
 import MESSAGES from '../Queries/Messages'
-import NEW_MESSAGE from '../Subscriptions/NewMessage'
-import { toast } from 'react-toastify';
 
-import NewMessage from './NewMessage'
+import { toast } from 'react-toastify';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -51,11 +46,11 @@ const Message = ({ chatId }) => {
     return ( 
         <div>
             <Paper className={classes.hideScrollBar}>
-                <List className={classes.root} className={classes.paper}>
+                <List className={classes.root && classes.paper} >
                     {
                         data.fetchMessagesByChatId.map((e) => {
                             return (
-                                <ListItem>
+                                <ListItem key={e.id}>
                                     <ListItemText primary={e.content} secondary={e.ownerId.name} />
                                 </ListItem>
                             ) 

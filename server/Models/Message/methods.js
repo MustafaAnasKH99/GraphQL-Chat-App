@@ -4,7 +4,7 @@ const Helpers = require('../helpers');
 
 // Create Message
 exports.createMessage = async (_, params, context) => {
-        // await Helpers.checkSuperAdmin(context);
+    // await Helpers.checkSuperAdmin(context);
     return new Promise((resolve, reject) => {
         const { content, chatId } = params
         const message = {

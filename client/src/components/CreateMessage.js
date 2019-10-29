@@ -6,10 +6,10 @@ import { makeStyles } from '@material-ui/core/styles'
 
 // Apollo
 import { useMutation, useSubscription } from '@apollo/react-hooks';
-import { toast } from 'react-toastify';
-
 import CREATE_MESSAGE from '../Mutations/createMessage'
 import NEW_MESSAGE from '../Subscriptions/NewMessage'
+
+import { toast } from 'react-toastify';
 
 const useStyles = makeStyles(theme => ({
     button: {
@@ -38,7 +38,7 @@ const CreateMessage = ({refetch, chatId}) => {
     }
     )
 
-    const { data, loading, error } = useSubscription(
+    const { data, error } = useSubscription(
         NEW_MESSAGE,
     )
 

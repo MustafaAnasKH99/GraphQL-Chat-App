@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react'
+import React, { useState } from 'react'
 import Chat from './Chat'
 
 
@@ -12,6 +12,7 @@ const Home = () => {
             <button style={{padding:  '5px', margin: '5px'}} onClick={() => {
                 localStorage.removeItem('token')
                 setToken("")
+                console.log(token)
             }}>Log Out</button>
             <Chat />
         </div>

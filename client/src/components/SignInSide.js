@@ -18,6 +18,7 @@ import CREATE_USER from '../Mutations/createUser'
 import { useMutation } from '@apollo/react-hooks';
 
 import Home from './Home'
+import { toast } from 'react-toastify';
 
 
 function Copyright() {
@@ -72,11 +73,11 @@ export default function SignInSide() {
   const [ email, setEmail ] = useState('')
   const [ mobile, setMobile ] = useState('')
   const [ password, setPassword ] = useState('')
-
+  
   const [sign, setSign] = useState('login')
 
   
-  const [ loginUser, { loading, error, called }] = useMutation(
+  const [ loginUser, { loading, error }] = useMutation(
     LOGIN_USER,
     {
       onCompleted: data => {
@@ -88,8 +89,10 @@ export default function SignInSide() {
     }
   )
 
-  //Signup hooks
+  if(error) console.log('check error', error)
+  if(loading) toast('logging in ..')
 
+  //Signup hooks
   const [ createUser ] = useMutation(
     CREATE_USER,
     {
@@ -108,7 +111,7 @@ export default function SignInSide() {
     await loginUser({ 
       variables: { mobile: mobile, password: password },
     })
-    console.log('function finished')
+    console.log('Signin function finished')
   }
 
   const SignUp = async (e) => {
