@@ -63,6 +63,7 @@ const apollo = new ApolloServer({
       // add the user to the context
       return { user, language };
     } if (params.req){
+      console.log('GETTING A REQUEST')
       const token = params.req.token || '';
       const language = params.req.language || 'ar';
       // try to retrieve a user with the token

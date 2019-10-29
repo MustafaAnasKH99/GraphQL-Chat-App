@@ -29,10 +29,13 @@ const resolvers = {
     Query: {
         // User.
         fetchCurrentUser: async (rootValue, input, context) => {
+            console.log('fetching current user from resolvers ..')
+            console.log('context')
+            console.log(context)
             // Subscription Notification for Real-Time
-            pubsub.publish(DEMO_LOGGEDIN, { demoSubscription: Methods.UserMethods.fetchCurrentUser(context) });
+            pubsub.publish(DEMO_LOGGEDIN, { demoSubscription: Methods.User.fetchCurrentUser(context) });
             // Query Method
-            return await Methods.UserMethods.fetchCurrentUser(context);
+            return await Methods.User.fetchCurrentUser(context);
         },
         fetchAllUsers: async () => {
             return await Methods.User.fetchAllUsers();

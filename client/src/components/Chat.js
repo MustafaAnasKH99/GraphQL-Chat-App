@@ -7,7 +7,7 @@ import Message from './Message'
 
 import chats from '../Queries/Chats'
 
-const Chat = () => {
+const Chat = ({currentUser}) => {
     const { loading, data} = useQuery(chats)
 
     if(loading){
@@ -17,7 +17,7 @@ const Chat = () => {
     } else {
         return (
             <div>
-                <Message chatId={data.fetchAllChats[0].id} />
+                <Message currentUser={currentUser} chatId={data.fetchAllChats[0].id} />
             </div>
         )
     }

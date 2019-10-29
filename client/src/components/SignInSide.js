@@ -76,21 +76,30 @@ export default function SignInSide() {
   
   const [sign, setSign] = useState('login')
 
+  const [isLoading, setLoading] = useState(false)
+
   
   const [ loginUser, { loading, error }] = useMutation(
     LOGIN_USER,
     {
       onCompleted: data => {
+        console.log('LOGIN COMPLETED')
         const { loginUser } = data
         localStorage.setItem('token', loginUser)
         setToken(loginUser)
+        setLoading(false) 
         console.log(loginUser)
       }
     }
   )
 
   if(error) console.log('check error', error)
-  if(loading) toast('logging in ..')
+  if(loading){
+    if (!isLoading){
+      setLoading(true)
+    }
+    toast('logging in ..')
+  }
 
   //Signup hooks
   const [ createUser ] = useMutation(
@@ -137,7 +146,7 @@ export default function SignInSide() {
     setPassword(e.target.value)
   }
 
-  if ( token ){
+  if ( !isLoading && token ){
     return (
       <div>
         <Home />

@@ -73,6 +73,7 @@ exports.loginUser = async function(params) {
 
 // Fetch Current Logged In User by Token
 exports.fetchCurrentUser = async function(context) {
+    console.log('context')
     console.log(context)
     return new Promise((resolve, reject) => {
         if (!context.user) {

@@ -16,8 +16,8 @@ type User {
 type UserQuery {
   id: String!
   name: String
-  mobile: String!
-  email: String!
+  mobile: String
+  email: String
   token: String
   role: Role!
   createdAt: String,

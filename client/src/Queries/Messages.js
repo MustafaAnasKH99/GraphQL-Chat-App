@@ -6,6 +6,7 @@ const MESSAGES = gql`
             id
             content
             ownerId{
+              id
               name
             }
           }
