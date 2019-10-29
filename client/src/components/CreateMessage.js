@@ -44,7 +44,7 @@ const CreateMessage = ({refetch, chatId}) => {
 
     if (error) console.log(error)
     if (data) {
-        data.newMessage ? toast('New Message!') : console.log('')
+        data.newMessage ? toast('New Message 💟') : console.log('')
         refetch()
     }
 

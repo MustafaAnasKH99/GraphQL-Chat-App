@@ -48,7 +48,8 @@ const apollo = new ApolloServer({
     // delete error.locations;
     // return error.message;
   },
-  context: async ({ payload, connection  }) => {
+  context: async (params) => {
+    const { payload, connection } = params;
     if (payload){
       console.log('there is payload')
       console.log(payload)
@@ -61,9 +62,20 @@ const apollo = new ApolloServer({
 
       // add the user to the context
       return { user, language };
+    } if (params.req){
+      const token = params.req.token || '';
+      const language = params.req.language || 'ar';
+      // try to retrieve a user with the token
+      const user = token ? await _getUser(token.replace("Bearer ","")) : null;
+      // optionally block the user
+      // we could also check user roles/permissions here
+
+      // add the user to the context
+      return { user, language };
     } else {
       // check connection for metadata
       console.log('check connection for metadata')
+      console.log(params.req)
       return connection.context;
     }
 }

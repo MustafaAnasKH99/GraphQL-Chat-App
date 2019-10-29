@@ -34,7 +34,7 @@ const useStyles = makeStyles(theme => ({
 const Message = ({ chatId }) => {
     const { loading, error, data, refetch } = useQuery(MESSAGES,{
         variables: { chatId },
-        onCompleted: () => toast('Messages loaded')
+        onCompleted: () => toast(`Messages loaded 🚀`)
     });
     
     const classes = useStyles();
