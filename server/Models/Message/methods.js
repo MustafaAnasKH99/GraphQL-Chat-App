@@ -5,9 +5,6 @@ const Helpers = require('../helpers');
 // Create Message
 exports.createMessage = async (_, params, context) => {
         // await Helpers.checkSuperAdmin(context);
-    console.log('MESSAGE REACHED BACKEND')
-    console.log('context')
-    console.log(context)
     return new Promise((resolve, reject) => {
         const { content, chatId } = params
         const message = {

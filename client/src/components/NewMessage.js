@@ -20,7 +20,7 @@ const NewMessage = () => {
     if (error) toast('ERROR')
     if (loading) toast('loading')
     if (!loading) console.log(data) 
-    if (data) console.log(data)
+    if (data) toast(data.newMessage.content)
 
     return ( 
         <div>
