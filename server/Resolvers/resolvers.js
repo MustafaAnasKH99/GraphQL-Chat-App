@@ -80,8 +80,6 @@ const resolvers = {
 
         // Messages
         createMessage: async (_, {params}, context) => {
-            console.log('it is being created')
-            console.log(params)
             pubsub.publish(NEW_MESSAGE, { newMessage: params});
             return await Methods.Message.createMessage(_, params, context)
         },

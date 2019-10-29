@@ -23,7 +23,9 @@ exports.createNewUser = async function(params) {
                 };
                 
                 // Create new User
+                console.log('newUser')
                 const newUser = new User(user);
+                console.log(newUser)
 
                 // Add new user to the public chat (push id to chats array)
                 Chat.findOne({_id: "5da53f50a4d559229fcb6060"}, (err, chat) => {

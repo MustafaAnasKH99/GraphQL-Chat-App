@@ -5,8 +5,11 @@ import { Input, Button } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 
 // Apollo
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation, useSubscription } from '@apollo/react-hooks';
+import { toast } from 'react-toastify';
+
 import CREATE_MESSAGE from '../Mutations/createMessage'
+import NEW_MESSAGE from '../Subscriptions/NewMessage'
 
 const useStyles = makeStyles(theme => ({
     button: {
@@ -23,7 +26,7 @@ const useStyles = makeStyles(theme => ({
 
 const CreateMessage = ({refetch, chatId}) => {
     const classes = useStyles();
-    const [ message, setMessage ] = useState('')
+    const [ message, setMessage ] = useState('Say something')
 
     const [ createMessage ] = useMutation(
     CREATE_MESSAGE,
@@ -35,6 +38,16 @@ const CreateMessage = ({refetch, chatId}) => {
     }
     )
 
+    const { data, loading, error } = useSubscription(
+        NEW_MESSAGE,
+    )
+
+    if (error) console.log(error)
+    if (data) {
+        data.newMessage ? toast('New Message!') : console.log('')
+        refetch()
+    }
+
     const handleChange = (e) => {
         setMessage(e.target.value)
     }
@@ -45,7 +58,6 @@ const CreateMessage = ({refetch, chatId}) => {
             variables: { chatId: chatId, content: message },
         })
         refetch()
-        setMessage('')
     }
 
     return ( 

@@ -64,7 +64,6 @@ const Message = ({ chatId }) => {
                 </List>
                 <CreateMessage chatId={chatId} refetch={refetch} className={classes.root} />
             </Paper>
-            <NewMessage />
         </div>
      );
 }
