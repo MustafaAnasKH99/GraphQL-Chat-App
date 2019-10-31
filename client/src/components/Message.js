@@ -17,6 +17,10 @@ const useStyles = makeStyles(theme => ({
       color: 'black',
     },
 
+    listName: {
+        backgroundColor: '#c51162;'
+    },
+
     paper: {
         maxHeight: 400,
         height: '100%',
@@ -32,8 +36,6 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Message = ({ currentUser, chatId }) => {
-    console.log('currentUser from Message')
-    console.log(currentUser)
 
     const { loading, error, data, refetch } = useQuery(MESSAGES,{
         variables: { chatId },
@@ -54,7 +56,7 @@ const Message = ({ currentUser, chatId }) => {
                         data.fetchMessagesByChatId.map((e) => {
                             return (
                                 <ListItem key={e.id}>
-                                {currentUser.id === e.ownerId.id ? <ListItemText primary={e.content} secondary={"YOU"} /> : <ListItemText primary={e.content} secondary={e.ownerId.name} /> }
+                                {currentUser.id === e.ownerId.id ? <ListItemText classes={classes.listName} primary={e.content} secondary={"YOU"} /> : <ListItemText primary={e.content} secondary={e.ownerId.name} /> }
                                 </ListItem>
                             )
                         })

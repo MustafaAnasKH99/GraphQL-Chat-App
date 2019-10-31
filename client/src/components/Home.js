@@ -25,9 +25,8 @@ const useStyles = makeStyles(theme => ({
 
 const Home = ({ setTokenFromApp }) => {
     const audio = new Audio(soundFile)
-    
+
     let _token = localStorage.getItem('token')
-    const [ token, setToken ] = useState(_token)
     const [ fetchedData, setFetchedData ] = useState(false)
 
     const classes = useStyles();
@@ -37,7 +36,6 @@ const Home = ({ setTokenFromApp }) => {
             onCompleted: () => {
                 toast(`Hello ${data.fetchCurrentUser.name} 👾 `)
                 audio.play()
-                console.log(data.fetchCurrentUser)
             }
         }
     )
@@ -48,7 +46,6 @@ const Home = ({ setTokenFromApp }) => {
         }
     )
 
-    if (data) console.log(data)
     if (error) console.log(error)
     if(data){
         if(!fetchedData){
@@ -58,19 +55,17 @@ const Home = ({ setTokenFromApp }) => {
     if(fetchedData === true){
         return ( 
             <div>
-                <h1>no judgement, {data.fetchCurrentUser.name}</h1>
+                <h1>We're honoured, {data.fetchCurrentUser.name}</h1>
                 <Chat currentUser={data.fetchCurrentUser}/>
                 <Button variant="contained" color="secondary" className={classes.button} onClick={() => {
                     localStorage.removeItem('token')
                     setTokenFromApp()
-                    console.log(token)
                 }}>
                     Log Out
                 </Button>
             </div>
          );
     } else {
-        console.log('THIS REACHED HOME')
         return <CircularProgress />
     }
 }
