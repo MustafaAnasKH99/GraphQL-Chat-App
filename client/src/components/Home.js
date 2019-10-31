@@ -9,6 +9,7 @@ import USER from '../Queries/User'
 
 import Chat from './Chat'
 import { toast } from 'react-toastify';
+import soundFile from '../assets/notification.mp3'
 
 import { CircularProgress } from '@material-ui/core'
 
@@ -23,6 +24,8 @@ const useStyles = makeStyles(theme => ({
 );
 
 const Home = ({ setTokenFromApp }) => {
+    const audio = new Audio(soundFile)
+    
     let _token = localStorage.getItem('token')
     const [ token, setToken ] = useState(_token)
     const [ fetchedData, setFetchedData ] = useState(false)
@@ -33,6 +36,7 @@ const Home = ({ setTokenFromApp }) => {
         {
             onCompleted: () => {
                 toast(`Hello ${data.fetchCurrentUser.name} 👾 `)
+                audio.play()
                 console.log(data.fetchCurrentUser)
             }
         }

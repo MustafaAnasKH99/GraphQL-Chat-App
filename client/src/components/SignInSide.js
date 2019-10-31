@@ -17,6 +17,8 @@ import LOGIN_USER from '../Mutations/loginUser'
 import CREATE_USER from '../Mutations/createUser'
 import { useMutation } from '@apollo/react-hooks';
 
+import { toast } from 'react-toastify';
+
 
 function Copyright() {
   return (
@@ -99,7 +101,7 @@ export default function SignInSide({ setTokenFromApp }) {
     {
       onCompleted: data => {
         const { createUser } = data
-        data !== null ? alert('Successfully created! now you can go sign in') : alert('sorry something went wrong')
+        data !== null ? toast('Successfully created! now you can go sign in 🚀 ') : toast('sorry something went wrong')
         console.log(createUser)
         setSign('login')
       }

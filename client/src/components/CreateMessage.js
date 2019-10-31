@@ -9,6 +9,8 @@ import { useMutation, useSubscription } from '@apollo/react-hooks';
 import CREATE_MESSAGE from '../Mutations/createMessage'
 import NEW_MESSAGE from '../Subscriptions/NewMessage'
 
+import soundFile from '../assets/notification.mp3'
+
 import { toast } from 'react-toastify';
 
 const useStyles = makeStyles(theme => ({
@@ -25,6 +27,8 @@ const useStyles = makeStyles(theme => ({
   
 
 const CreateMessage = ({refetch, chatId}) => {
+    const audio = new Audio(soundFile)
+
     const classes = useStyles();
     const [ message, setMessage ] = useState('Say something')
 
@@ -44,7 +48,12 @@ const CreateMessage = ({refetch, chatId}) => {
 
     if (error) console.log(error)
     if (data) {
-        data.newMessage ? toast('New Message 💟') : console.log('')
+        if (data.newMessage){
+            toast('New Message 💟')
+            audio.play()
+        } else {
+            console.log('')
+        }
         refetch()
     }
 
