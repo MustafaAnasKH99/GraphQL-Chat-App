@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme => ({
   })
 );
 
-const Home = () => {
+const Home = ({ setTokenFromApp }) => {
     let _token = localStorage.getItem('token')
     const [ token, setToken ] = useState(_token)
     const [ fetchedData, setFetchedData ] = useState(false)
@@ -51,14 +51,14 @@ const Home = () => {
             setFetchedData(true)
         }
     } 
-    if(fetchedData){
+    if(fetchedData === true){
         return ( 
             <div>
                 <h1>no judgement, {data.fetchCurrentUser.name}</h1>
                 <Chat currentUser={data.fetchCurrentUser}/>
                 <Button variant="contained" color="secondary" className={classes.button} onClick={() => {
                     localStorage.removeItem('token')
-                    setToken("")
+                    setTokenFromApp()
                     console.log(token)
                 }}>
                     Log Out

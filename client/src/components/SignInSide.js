@@ -17,9 +17,6 @@ import LOGIN_USER from '../Mutations/loginUser'
 import CREATE_USER from '../Mutations/createUser'
 import { useMutation } from '@apollo/react-hooks';
 
-import Home from './Home'
-import { toast } from 'react-toastify';
-
 
 function Copyright() {
   return (
@@ -63,7 +60,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function SignInSide() {
+export default function SignInSide({ setTokenFromApp }) {
   const _token = localStorage.getItem('token')
   const classes = useStyles();
 
@@ -87,6 +84,7 @@ export default function SignInSide() {
         const { loginUser } = data
         localStorage.setItem('token', loginUser)
         setToken(loginUser)
+        setTokenFromApp(loginUser)
         setLoading(false) 
         console.log(loginUser)
       }
@@ -94,12 +92,6 @@ export default function SignInSide() {
   )
 
   if(error) console.log('check error', error)
-  if(loading){
-    if (!isLoading){
-      setLoading(true)
-    }
-    toast('logging in ..')
-  }
 
   //Signup hooks
   const [ createUser ] = useMutation(
@@ -145,14 +137,6 @@ export default function SignInSide() {
   const handlePasswordChange = (e) => {
     setPassword(e.target.value)
   }
-
-  if ( !isLoading && token ){
-    return (
-      <div>
-        <Home />
-      </div>
-    )
-  } else {
       return (
         <Grid container component="main" className={classes.root}>
         <CssBaseline />
@@ -301,5 +285,5 @@ export default function SignInSide() {
         </Grid>
       </Grid>
       )
-  }
+  
 }

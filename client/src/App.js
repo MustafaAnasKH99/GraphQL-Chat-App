@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import SignInSide from './components/SignInSide.js';
+import ContextApi from './Context'
 
 import { ApolloProvider } from '@apollo/react-hooks';
 import { ApolloClient } from 'apollo-client';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { WebSocketLink } from 'apollo-link-ws';
+
+import Home from './components/Home'
 
 
 
@@ -41,14 +44,20 @@ const client = new ApolloClient({
 })
 
 function App() {  
+  const [ stateToken, setTokenFromApp ] = useState(token)
+
   return (
     <ApolloProvider client={client}>
-      <div className="App">
-        <header className="App-header">
-        <SignInSide />
-        <ToastContainer />
-        </header>
-      </div>
+      <ContextApi.Provider value={token}>
+        <div className="App">
+          <header className="App-header">
+          {
+            stateToken ? <Home setTokenFromApp={setTokenFromApp} /> : <SignInSide setTokenFromApp={setTokenFromApp}/>
+          }
+          <ToastContainer />
+          </header>
+        </div>
+      </ContextApi.Provider>
     </ApolloProvider>
   );
 }
