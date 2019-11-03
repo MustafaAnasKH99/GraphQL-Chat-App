@@ -36,6 +36,7 @@ const Home = ({ setTokenFromApp }) => {
             onCompleted: () => {
                 toast(`Hello ${data.fetchCurrentUser.name} 👾 `)
                 audio.play()
+                console.log(fetchedData)
             }
         }
     )

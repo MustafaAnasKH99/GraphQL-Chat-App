@@ -25,6 +25,7 @@ const useStyles = makeStyles(theme => ({
         maxHeight: 400,
         height: '100%',
         width: '100%',
+        maxWidth: 600,
         overflow: 'auto'
     },
 

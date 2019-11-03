@@ -45,7 +45,8 @@ const client = new ApolloClient({
 
 function App() {  
   const [ stateToken, setTokenFromApp ] = useState(token)
-
+  console.log('stateToken')
+  console.log(stateToken)
   return (
     <ApolloProvider client={client}>
       <ContextApi.Provider value={token}>
