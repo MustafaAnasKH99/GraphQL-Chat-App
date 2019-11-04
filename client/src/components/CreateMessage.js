@@ -50,13 +50,13 @@ const CreateMessage = ({refetch, chatId, currentUser}) => {
     if (data) {
         console.log('data')
         console.log(data)
-        // if (data.newMessage){
-        //     toast(`New Message 💟 from from ${data.newMessage.ownerId.name}`)
-        //     console.log(data.newMessage)
-        //     audio.play()
-        // } else {
-        //     console.log('no data')
-        // }
+        if (data.newMessage){
+            toast(`New Message 💟`)
+            console.log(data.newMessage)
+            audio.play()
+        } else {
+            console.log('no data')
+        }
         refetch()
     }
 
