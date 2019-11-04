@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
   }));
   
 
-const CreateMessage = ({refetch, chatId}) => {
+const CreateMessage = ({refetch, chatId, currentUser}) => {
     const audio = new Audio(soundFile)
 
     const classes = useStyles();
@@ -34,26 +34,29 @@ const CreateMessage = ({refetch, chatId}) => {
 
     const [ createMessage ] = useMutation(
     CREATE_MESSAGE,
-    {
-        onCompleted: data => {
-        const { createMessage } = data
-            console.log(createMessage)
-        }
-    }
+    // {
+    //     onCompleted: data => {
+    //     const { createMessage } = data
+    //         console.log(createMessage)
+    //     }
+    // }
     )
 
     const { data, error } = useSubscription(
         NEW_MESSAGE,
     )
 
-    if (error) console.log(error)
+    if (error) console.log(error.graphQLErrors)
     if (data) {
-        if (data.newMessage){
-            toast('New Message 💟')
-            audio.play()
-        } else {
-            console.log('')
-        }
+        console.log('data')
+        console.log(data)
+        // if (data.newMessage){
+        //     toast(`New Message 💟 from from ${data.newMessage.ownerId.name}`)
+        //     console.log(data.newMessage)
+        //     audio.play()
+        // } else {
+        //     console.log('no data')
+        // }
         refetch()
     }
 
@@ -66,7 +69,7 @@ const CreateMessage = ({refetch, chatId}) => {
         await createMessage({ 
             variables: { chatId: chatId, content: message },
         })
-        refetch()
+        // refetch()
     }
 
     return ( 

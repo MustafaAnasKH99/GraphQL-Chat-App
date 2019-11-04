@@ -30,8 +30,6 @@ const resolvers = {
         // User.
         fetchCurrentUser: async (rootValue, input, context) => {
             console.log('fetching current user from resolvers ..')
-            console.log('context')
-            console.log(context)
             // Subscription Notification for Real-Time
             pubsub.publish(DEMO_LOGGEDIN, { demoSubscription: Methods.User.fetchCurrentUser(context) });
             // Query Method
@@ -83,8 +81,9 @@ const resolvers = {
 
         // Messages
         createMessage: async (_, {params}, context) => {
-            pubsub.publish(NEW_MESSAGE, { newMessage: params});
-            return await Methods.Message.createMessage(_, params, context)
+            console.log(params)
+            return await pubsub.publish(NEW_MESSAGE, { newMessage: Methods.Message.createMessage(_, params, context) });
+            // create the message, then fetch it, then send it for newMessage
         },
         deleteMessage: async (_, {id}, context) => {
             return await Methods.Message.deleteMessage(id)

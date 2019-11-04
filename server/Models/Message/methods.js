@@ -7,6 +7,8 @@ exports.createMessage = async (_, params, context) => {
     // await Helpers.checkSuperAdmin(context);
     return new Promise((resolve, reject) => {
         const { content, chatId } = params
+        console.log('context.user.id')
+        console.log(context.user.id)
         const message = {
             chatId: chatId,
             ownerId: context.user.id,
@@ -70,4 +72,15 @@ exports.deleteMessage = async (id, context) => {
         resolve(event, 'Message deleted successfully')
     }).exec()
     });
+}
+
+exports.fetchNewMessage = async (new_message) => {
+    return new Promise((resolve, reject) => {
+        Message.find(new_message, (err, msg) => {
+            if(err) console.log(err, 'not found')
+            console.log('msg')
+            console.log(msg)
+            resolve(msg)
+        }).populate('ownerId').populate('chatId')
+    }) 
 }

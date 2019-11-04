@@ -63,7 +63,7 @@ const Message = ({ currentUser, chatId }) => {
                         })
                     }
                 </List>
-                <CreateMessage chatId={chatId} refetch={refetch} className={classes.root} />
+                <CreateMessage currentUser={currentUser} chatId={chatId} refetch={refetch} className={classes.root} />
             </Paper>
         </div>
      );

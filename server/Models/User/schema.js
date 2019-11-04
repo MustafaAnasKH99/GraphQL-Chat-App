@@ -2,7 +2,7 @@ const { gql } = require('apollo-server-express');
 
 const schema = gql`
 type User {
-  id: String!
+  id: String
   mobile: String
   password: String!
   name: String
@@ -14,7 +14,7 @@ type User {
 }
 
 type UserQuery {
-  id: String!
+  id: String
   name: String
   mobile: String
   email: String
