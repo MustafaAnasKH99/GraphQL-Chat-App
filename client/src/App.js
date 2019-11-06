@@ -50,13 +50,11 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <ContextApi.Provider value={token}>
-        <div className="App">
-          <header className="App-header">
+        <div className="App main-app-container">
           {
             stateToken ? <Home setTokenFromApp={setTokenFromApp} /> : <SignInSide setTokenFromApp={setTokenFromApp}/>
           }
           <ToastContainer />
-          </header>
         </div>
       </ContextApi.Provider>
     </ApolloProvider>

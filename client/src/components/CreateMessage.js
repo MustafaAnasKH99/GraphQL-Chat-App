@@ -14,15 +14,28 @@ import soundFile from '../assets/notification.mp3'
 import { toast } from 'react-toastify';
 
 const useStyles = makeStyles(theme => ({
+    root: {
+        width: '100%',
+        maxWidth: 360,
+        backgroundColor: "#464646",
+        color: 'red',
+        fontWeight: "Bold",
+        color: "#d1d1d1",
+        borderRadius: 25,
+    },
     button: {
       margin: theme.spacing(1),
+      backgroundColor: "#1de9b6",
+      color: "white",
+      fontWeight: "Bold"
     },
     input: {
-      display: 'none',
+      color: "white",
+      fontWeight: "Bold"
     },
     div: {
         margin: theme.spacing(1)
-    }
+    },
   }));
   
 
@@ -73,9 +86,9 @@ const CreateMessage = ({refetch, chatId, currentUser}) => {
     }
 
     return ( 
-        <div className={classes.div}>
-            <Input onChange={(e) => handleChange(e)} className="Mui-focused MuiInput-fullWidth" placeholder="Say something" color="white"/>
-            <Button onClick={(e) => handleSubmit(e)} className={classes.button} color="primary" variant="contained">
+        <div className={classes.root}>
+            <Input onChange={(e) => handleChange(e)} className={`${classes.input}`} placeholder="Say something"/>
+            <Button onClick={(e) => handleSubmit(e)} className={classes.button} variant="contained">
                 Send!
             </Button>
         </div>
