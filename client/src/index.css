@@ -12,8 +12,3 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-
-.main-chat-wrapper{
-  max-width: 400px;
-  margin: 0 auto;
-}
